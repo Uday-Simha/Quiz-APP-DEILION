@@ -1,0 +1,12 @@
+fastapi 
+uvicorn 
+sqlalchemy 
+alembic 
+bcrypt 
+python-jose[cryptography] 
+requests 
+python-dotenv
+psycopg2-binary
+passlib[bcrypt]
+google.generativeai
+
