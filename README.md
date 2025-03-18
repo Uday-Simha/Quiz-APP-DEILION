@@ -77,23 +77,24 @@ quiz-app/ │── backend/ # FastAPI Backend
 
 ## 📸 Screenshots
 
-### 🔑 Login Page
-![Login](images/login.png)
+### 🔑 Login Page check under Images/login.png
+<img src="images/login.png" alt="Login Page" width="600">
 
-### 📝 Register Page
-![Register](images/register.png)
+### 📝 Register Page check under Images/register.png
 
-### 🎯 Quiz Setup
-![Quiz Setup](images/setup_quiz.png)
+<img src="images/register.png" alt="Register Page" width="600">
 
-### 🚀 Start Quiz
-![Start Quiz](images/GeneratedQuiz.png)
+### 🎯 Quiz Setup check under Images/setup_quiz.png
+<img src="images/setup_quiz.png" alt="Quiz Setup" width="600">
 
-### 🏁 Finish Quiz
-![Finish Quiz](images/finish.png)
+### 🚀 Start Quiz check under Images/GeneratedQuiz.png
+<img src="images/GeneratedQuiz.png" alt="Start Quiz" width="600">
 
-### 🎯 Quiz Score
-![Quiz Score](images/score.png)
+### 🏁 Finish Quiz check under Images/finish.png
+<img src="images/finish.png" alt="Finish Quiz" width="600">
+
+### 🎯 Quiz Score check under Images/score.png
+<img src="images/score.png" alt="Quiz Score" width="600">
 
 ---
 
@@ -111,11 +112,15 @@ pip install -r requirements.txt
 ```
 
 2. Create a .env file in the backend directory:
-
+    ```bash
     DATABASE_URL=postgresql+psycopg2://your_user_name:your_password@your_localhost:your_port/your_db
+
     SECRET_KEY=your_secret_key
+
     ALGORITHM=HS256
+
     GEMINI_API_KEY=your_gemini_api_key
+    ```
 
 3. Run the Server
 
@@ -161,11 +166,6 @@ pip install -r requirements.txt
 
 📜 License
 This version of your README includes the images in relevant sections. Let me know if you need any modifications! 🚀
-
-
-
-
-
 
 
 
