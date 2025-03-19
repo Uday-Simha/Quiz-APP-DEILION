@@ -39,17 +39,18 @@ quiz-app/ │── backend/ # FastAPI Backend
             │── frontend/ # React (Vite) Frontend 
                 ├── src/ 
                 ├── components/  
-                    ├── Login.js   
-                    ├── Register.js   
-                    ├── QuizSetup.js   
-                    ├── Quiz.js  
-                    ├── Summary.js 
+                    ├── Login.jsx   
+                    ├── Register.jsx   
+                    ├── QuizSetup.jsx   
+                    ├── Quiz.jsx 
+                    ├── Summary.jsx 
+                    ├── Layout.jsx
                 ├── context/  
-                    ├── AuthContext.js 
+                    ├── AuthContext.jsx 
                 ├── pages/  
-                    ├── Home.js  
-                    ├── Dashboard.js 
-                ├── App.js  
+                    ├── Home.jsx 
+                    ├── Dashboard.jsx 
+                ├── App.jsx  
                 ├── main.jsx  
                 ├── package.json  
                 ├── vite.config.js 
