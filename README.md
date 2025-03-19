@@ -96,9 +96,13 @@ quiz-app/ │── backend/ # FastAPI Backend
 ### 🎯 Quiz Score check under Images/score.png
 <img src="images/score.png" alt="Quiz Score" width="600">
 
+### 🚀 Dashboard Score check under Images/dashboard.png
+<img src="images/dashboard.png" alt="Dashboard" width="600"
+
 ---
 
-
+## Note : After Finishing the Quiz click on Goto Dashboard button to see the dashboard.
+<img src="images/image.png" alt="dashboard button" width="600"
 
 
 ## ⚙️ Backend Setup (FastAPI)

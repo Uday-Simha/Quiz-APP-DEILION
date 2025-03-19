@@ -31,5 +31,7 @@ class QuizAttempt(Base):
     correct_answers = Column(JSON, nullable=False)  # Stores correct answer indices
     score = Column(Integer, default=0)  # Score after submission
     time_taken = Column(Integer, default=0)  # Time taken (optional)
+    correct_answers_count = Column(Integer, default=0)  # Store correct count
+    incorrect_answers_count = Column(Integer, default=0)  # Store incorrect count
 
     user = relationship("User", back_populates="quiz_attempts")

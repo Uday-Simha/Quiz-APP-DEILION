@@ -17,6 +17,19 @@ load_dotenv()
 # Initialize FastAPI
 quiz_router = APIRouter()
 
+from pydantic import BaseModel
+
+class QuizAttemptSummaryResponse(BaseModel):
+    id: int  # Quiz ID
+    topic: str
+    score: int
+    correct_answers_count: int
+    incorrect_answers_count: int
+
+    class Config:
+        orm_mode = True  # Enables SQLAlchemy model serialization
+
+
 # Input model
 class QueryRequest(BaseModel):
     topic: str = Field(..., description="The main topic to focus on")
@@ -113,6 +126,7 @@ async def generate_mcq_questions(
 class ScoreUpdateRequest(BaseModel):
     quiz_id: int = Field(..., description="ID of the quiz attempt")
     score: int = Field(..., description="Score obtained by the user")
+  
 
 @quiz_router.put("/update_score")
 async def update_quiz_score(
@@ -130,8 +144,15 @@ async def update_quiz_score(
         # Calculate total questions
         total_questions = len(quiz_attempt.mcqs) if isinstance(quiz_attempt.mcqs, list) else 0
 
-        # Update the score
+        # Calculate correct & incorrect answers
+        correct_answers_count = request.score
+        incorrect_answers_count = total_questions - correct_answers_count
+
+        # Update fields in DB
         quiz_attempt.score = request.score
+        quiz_attempt.correct_answers_count = correct_answers_count
+        quiz_attempt.incorrect_answers_count = incorrect_answers_count
+
         db.commit()
         db.refresh(quiz_attempt)
 
@@ -139,10 +160,21 @@ async def update_quiz_score(
             "message": "Score updated successfully",
             "quiz_id": request.quiz_id,
             "updated_score": request.score,
-            "total_questions": total_questions,  # Include total number of questions
+            "total_questions": total_questions,
+            "correct_answers": correct_answers_count,
+            "incorrect_answers": incorrect_answers_count,
             "display_score": f"{request.score}/{total_questions}"  # UI-friendly format
         }
 
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error updating score: {str(e)}")    
-
+        raise HTTPException(status_code=500, detail=f"Error updating score: {str(e)}")
+    
+@quiz_router.get("/quiz/attempts/{user_id}", response_model=list[QuizAttemptSummaryResponse])
+def get_quiz_attempts(user_id: int, db: Session = Depends(get_db)):
+    """Fetch all quiz attempts for a specific user."""
+    quiz_attempts = db.query(QuizAttempt).filter(QuizAttempt.user_id == user_id).all()
+    
+    if not quiz_attempts:
+        raise HTTPException(status_code=404, detail="No quiz attempts found for this user")
+    
+    return quiz_attempts    
