@@ -11,16 +11,6 @@ class User(Base):
     quiz_attempts = relationship("QuizAttempt", back_populates="user")
 
 
-# class QuizAttempt(Base):
-#     __tablename__ = "quiz_attempts"
-#     id = Column(Integer, primary_key=True, index=True)
-#     user_id = Column(Integer, ForeignKey("users.id"))
-#     topic = Column(String)
-#     score = Column(Integer)
-#     time_taken = Column(Integer)
-
-#     user = relationship("User")
-
 class QuizAttempt(Base):
     __tablename__ = "quiz_attempts"
 

@@ -1,5 +1,3 @@
-
-
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import QuizSetup from "../components/QuizSetup";
@@ -7,7 +5,6 @@ import QuizSetup from "../components/QuizSetup";
 const Home = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
-    const [showQuizSetup, setShowQuizSetup] = useState(false);
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -20,25 +17,8 @@ const Home = () => {
 
     return (
         <div>
-            <h2>Welcome to the Quiz</h2>
-            {user ? (
-                <>
-                    {!showQuizSetup ? (
-                        <button onClick={() => setShowQuizSetup(true)}>Start Quiz</button>
-                    ) : (
-                        <QuizSetup />
-                    )}
-                    <br />
-                    <button onClick={() => {
-                        localStorage.removeItem("token");
-                        navigate("/login");
-                    }}>
-                        Logout
-                    </button>
-                </>
-            ) : (
-                <p>Loading...</p>
-            )}
+            <h2>Welcome to the Quiz-App</h2>
+            {user ? <QuizSetup /> : <p>Loading...</p>}
         </div>
     );
 };

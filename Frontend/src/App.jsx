@@ -1,22 +1,27 @@
-
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext"; // Import AuthProvider
+import { AuthProvider } from "./context/AuthContext";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Layout from "./components/Layout";  // Import Layout
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 
-
 function App() {
     return (
-        <Router> {/* Router should wrap everything */}
-            <AuthProvider> {/* Now inside Router */}
+        <Router>
+            <AuthProvider>
                 <Routes>
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="*" element={<Login />} /> {/* Redirect unknown routes to Login */}
+                    
+                    {/* Protected Layout with Sidebar */}
+                    <Route path="/" element={<Layout />}>
+                        <Route path="home" element={<Home />} />
+                        <Route path="dashboard" element={<Dashboard />} />
+                    </Route>
+
+                    {/* Redirect unknown routes to Login */}
+                    <Route path="*" element={<Login />} />
                 </Routes>
             </AuthProvider>
         </Router>
@@ -24,3 +29,4 @@ function App() {
 }
 
 export default App;
+
